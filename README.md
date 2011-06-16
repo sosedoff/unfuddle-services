@@ -49,6 +49,41 @@ Add section 'postbin':
     postbin:
       token: 'YOUR_TOKEN'
 
+## Developing services
+
+If you want to add another service, please follow this pattern:
+
+    ```ruby
+    module Services
+      class MyService < Services::Base
+        def initialize(config={})
+          @config = config
+          @username = @config[:username] || ''
+          @password = @config[:password] || ''
+        end
+        
+        # Transform changeset into desired format
+        def render(changeset)
+          "Commit: #{changeset.commit} by #{changeset.author}"
+        end
+    
+        # Perform actions with changeset
+        def push(changeset)
+          http_post("YOUR_SERVICE_URL", render(changeset))
+        end
+    
+        # Returns true of false if provided config data is valid
+        def valid?
+          !@username.empty? && !@password.empty?
+        end
+      end
+    end
+    ```
+
+New service file should be placed under lib/services with a proper name (ex.: MyService -> my_service).
+
+Also, each service should be supplied with a test file (spec/service_my_service_spec.rb).
+
 ## License
 
 Copyright &copy; 2011 Dan Sosedoff.
