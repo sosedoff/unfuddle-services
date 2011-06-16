@@ -7,20 +7,6 @@ $LOAD_PATH << '.' if RUBY_VERSION > '1.9'
 require 'lib/unfuddle'
 require 'lib/services'
 
-module UnfuddleServices
-  VERSION = '0.1.0'.freeze
-  
-  class InvalidConfigError < Exception ; end
-  
-  def self.load_config(repo_id)
-    path = File.join(settings.root, 'config', 'hooks', "#{repo_id}.yml")
-    unless File.exists?(path)
-      raise UnfuddleServices::InvalidConfigError, "Config file #{path} was not found!"
-    end
-    YAML.load_file(path)
-  end
-end
-
 configure :production do
   set :static,              false
   set :sessions,            false
