@@ -1,5 +1,6 @@
 require 'bundler'
-require "rspec/core/rake_task"
+require 'rspec/core/rake_task'
+require 'resque/tasks'
 
 RSpec::Core::RakeTask.new(:test) do |t|
   t.pattern = 'spec/*_spec.rb'
@@ -8,6 +9,8 @@ end
 
 task :default => :test
 
-task :setup do
-  # TODO: Init configs and other stuff
+task :environment do
+  require './app'
 end
+
+task 'resque:setup' => :environment

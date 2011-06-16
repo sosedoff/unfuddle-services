@@ -1,11 +1,14 @@
 require 'rubygems'
 require 'sinatra'
 require 'yaml'
+require 'resque'
 
 $LOAD_PATH << '.' if RUBY_VERSION > '1.9'
 
 require 'lib/unfuddle'
 require 'lib/services'
+
+UnfuddleServices.root = File.expand_path(File.dirname(__FILE__))
 
 configure :production do
   set :static,              false
@@ -27,14 +30,9 @@ end
 
 post '/push' do
   begin
-    changeset = Unfuddle::Changeset.new(request.body.read)
-    config = UnfuddleServices.load_config(changeset.repo)
-    unless config.empty?
-      config.each_pair do |service_name, options|
-        service = Services.get(service_name, options.symbolize_keys)
-        service.push(changeset)
-      end
-    end
+    xml = request.body.read
+    changeset = Unfuddle::Changeset.new(xml)
+    Resque.enqueue(Services::PushJob, xml)
   rescue Unfuddle::ChangesetError => e
     halt 400, "Changeset Error: #{e.message}"
   rescue Services::InvalidServiceError => e
