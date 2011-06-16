@@ -24,7 +24,11 @@ describe Unfuddle::Changeset do
   end
   
   it 'should be filled with a proper data' do
-    changeset = Unfuddle::Changeset.new(fixture('changeset.xml'))
+    c = Unfuddle::Changeset.new(fixture('changeset.xml'))
+    c.repo.should == 104
+    c.author.should == 'Dan Sosedoff'
+    c.message.should == 'commit message'
+    c.commit.should == '9ff4adb49339636e63e0faa25d5259313b0f7b7c'
   end
   
   it 'should return the same XML content it was given' do
