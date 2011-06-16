@@ -26,7 +26,7 @@ module Unfuddle
       
       @data = @data['changeset']
       
-      unless (FIELDS - @data.keys).empty?
+      unless (FIELDS & @data.keys).size == FIELDS.size
         raise ChangesetError, 'Invalid changeset!'
       end
       
