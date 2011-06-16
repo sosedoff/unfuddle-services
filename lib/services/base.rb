@@ -21,7 +21,11 @@ module Services
         config.each_pair do |service_name, options|
           begin
             service = Services.get(service_name, options.symbolize_keys)
-            service.push(changeset)
+            if service.valid?
+              service.push(changeset)
+            else
+              raise UnfuddleServices::InvalidConfigError, "Invalid section '#{service_name}' in repository #{changeset.repo}.yaml"
+            end
           rescue Services::InvalidServiceError
             # TODO: Log this
           end
