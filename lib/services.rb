@@ -1,6 +1,3 @@
-require 'lib/services/base'
-require 'lib/services/basecamp'
-
 module UnfuddleServices
   VERSION = '0.1.0'.freeze
     
@@ -23,3 +20,7 @@ module UnfuddleServices
     @@root = path
   end
 end
+
+require 'lib/services/base'
+require 'lib/services/basecamp'
+require 'lib/services/postbin'

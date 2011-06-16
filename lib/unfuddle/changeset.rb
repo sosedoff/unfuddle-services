@@ -11,6 +11,7 @@ module Unfuddle
     attr_reader :date
     attr_reader :commit
     attr_reader :repo
+    attr_reader :xml
     
     def initialize(xml)
       xml = xml.to_s.strip
@@ -24,6 +25,7 @@ module Unfuddle
       
       raise ChangesetError, 'Invalid changeset!' unless @data.key?('changeset')
       
+      @xml  = xml      
       @data = @data['changeset']
       
       unless (FIELDS & @data.keys).size == FIELDS.size

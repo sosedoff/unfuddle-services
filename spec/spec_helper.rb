@@ -26,3 +26,7 @@ end
 def basecamp(opts={})
   Services::Basecamp.new(opts)
 end
+
+def postbin(opts={})
+  Services::Postbin.new(opts)
+end
