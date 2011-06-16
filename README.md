@@ -19,10 +19,11 @@ Then point add a URL callback in your unfuddle repository:
     
 Dont forget to add file REPO_ID.yml to config/hooks folder. That's how the system knows that this repo is being connected.
 
-## Supported hooks
+## Supported services
 
-- Basecamp
-- Campfire (incoming)
+- Basecamp - http://basecamphq.com/
+- Postbin - http://www.postbin.org/
+- Campfire (incoming) - http://campfirenow.com/
 
 ### Basecamp
 
@@ -36,7 +37,17 @@ Add section 'basecamp' into your repo config file.
       api_token: "your API token"
       project: "ID of the project to post"
       post: "ID of the post to post"
-      
+
+### Postbin
+
+Postbin gives you place to test data from http requests. You should have similar url:
+
+    http://www.postbin.org/YOUR_TOKEN
+
+Add section 'postbin':
+
+    postbin:
+      token: 'YOUR_TOKEN'
 
 ## License
 
