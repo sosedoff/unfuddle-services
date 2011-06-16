@@ -7,6 +7,16 @@ require_relative 'lib/services'
 
 module UnfuddleServices
   VERSION = '0.1.0'.freeze
+  
+  class InvalidConfigError < Exception ; end
+  
+  def self.load_config(repo_id)
+    path = File.join(settings.root, 'config', 'hooks', "#{repo_id}.yml")
+    unless File.exists?(path)
+      raise UnfuddleServices::InvalidConfigError, "Config file #{path} was not found!"
+    end
+    YAML.load_file(path)
+  end
 end
 
 configure :production do
@@ -30,12 +40,13 @@ end
 post '/push' do
   begin
     changeset = Unfuddle::Changeset.new(request.body.read)
-    hook = YAML.load(File.read(File.join(settings.root, 'config', 'hooks', "#{changeset.repo}.yml")))
-    hook.each_pair do |type, data|
-      service = Services.get(type, data.symbolize_keys)
-      puts service.inspect
-      service.push(changeset)
-    end  
+    config = UnfuddleServices.load_config(changeset.repo)
+    unless config.empty?
+      config.each_pair do |service_name, options|
+        service = Services.get(service_name, options.symbolize_keys)
+        service.push(changeset)
+      end
+    end
   rescue Unfuddle::ChangesetError => e
     halt 400, "Changeset Error: #{e.message}"
   rescue Services::InvalidServiceError => e
