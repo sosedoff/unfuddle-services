@@ -26,4 +26,9 @@ describe Unfuddle::Changeset do
   it 'should be filled with a proper data' do
     changeset = Unfuddle::Changeset.new(fixture('changeset.xml'))
   end
+  
+  it 'should return the same XML content it was given' do
+    changeset = Unfuddle::Changeset.new(fixture('changeset.xml'))
+    changeset.xml.should == fixture('changeset.xml')
+  end
 end
