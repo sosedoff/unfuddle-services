@@ -1,1 +1,1 @@
-require_relative 'unfuddle/changeset'
+require 'lib/unfuddle/changeset'

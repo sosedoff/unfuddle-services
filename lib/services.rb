@@ -1,2 +1,2 @@
-require_relative 'services/base'
-require_relative 'services/basecamp'
+require 'lib/services/base'
+require 'lib/services/basecamp'

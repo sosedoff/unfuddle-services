@@ -2,8 +2,10 @@ require 'rubygems'
 require 'sinatra'
 require 'yaml'
 
-require_relative 'lib/unfuddle'
-require_relative 'lib/services'
+$LOAD_PATH << '.' if RUBY_VERSION > '1.9'
+
+require 'lib/unfuddle'
+require 'lib/services'
 
 module UnfuddleServices
   VERSION = '0.1.0'.freeze
