@@ -53,7 +53,6 @@ Add section 'postbin':
 
 If you want to add another service, please follow this pattern:
 
-    ```ruby
     module Services
       class MyService < Services::Base
         def initialize(config={})
@@ -78,7 +77,6 @@ If you want to add another service, please follow this pattern:
         end
       end
     end
-    ```
 
 New service file should be placed under lib/services with a proper name (ex.: MyService -> my_service).
 
