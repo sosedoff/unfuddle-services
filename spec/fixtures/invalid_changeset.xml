@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<changeset>
+  <author-date type="datetime">2011-06-14T19:04:40+00:00</author-date>
+  <author-email>dan.sosedoff@gmail.com</author-email>
+  <author-id type="integer" nil="true"></author-id>
+  <author-name>Dan Sosedoff</author-name>
+  <committer-date type="datetime">2011-06-14T19:04:40+00:00</committer-date>
+  <committer-email>dan.sosedoff@gmail.com</committer-email>
+  <committer-id type="integer" nil="true"></committer-id>
+  <committer-name>Dan Sosedoff</committer-name>
+  <created-at type="datetime">2011-06-14T19:04:47+00:00</created-at>
+  <id type="integer">3898</id>
+  <repository-id type="integer">104</repository-id>
+</changeset>
