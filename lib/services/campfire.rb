@@ -5,7 +5,7 @@ module Services
       @subdomain  = config[:subdomain]
       @api_token  = config[:api_token]
       @room       = config[:room]
-      @url        = "https://#{@api_token}:X@{@subdomain}.campfirenow.com/room/#{@room}/speak.json"
+      @url        = "https://#{@api_token}:X@{@subdomain}.campfirenow.com"
     end
     
     def render(data)
@@ -18,7 +18,7 @@ module Services
     
     def push(changeset)
       data = {:message => {:body => render(changeset), :type => "TextMessage"}}.to_json,
-      http_post(@url, data)
+      http_post("#{@url}/room/#{@room}/speak.json", data)
     end
     
     def valid?
