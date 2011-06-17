@@ -27,6 +27,10 @@ def basecamp(opts={})
   Services::Basecamp.new(opts)
 end
 
+def campfire(opts={})
+  Services::Campfire.new(opts)
+end
+
 def postbin(opts={})
   Services::Postbin.new(opts)
 end

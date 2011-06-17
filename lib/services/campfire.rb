@@ -22,7 +22,7 @@ module Services
     end
     
     def valid?
-      ([:subdomain, :api_token, :project, :post] & @config.keys).size == 4
+      ([:subdomain, :api_token, :room] & @config.keys).size == 3
     end
   end
 end

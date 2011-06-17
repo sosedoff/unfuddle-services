@@ -23,4 +23,5 @@ end
 
 require 'lib/services/base'
 require 'lib/services/basecamp'
+require 'lib/services/campfire'
 require 'lib/services/postbin'
