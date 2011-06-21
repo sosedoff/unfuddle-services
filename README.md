@@ -37,6 +37,17 @@ Add section 'basecamp' into your repo config file.
       api_token: "your API token"
       project: "ID of the project to post"
       post: "ID of the post to post"
+      
+### Campfire
+
+Campfire hook allows service to post commit messages into one of the specified rooms.
+
+Add section 'campfire' into your repo config file.
+
+    campfire:
+      subdomain: "your subdomain"
+      api_token: "your API token"
+      room: "your room ID"
 
 ### Postbin
 
