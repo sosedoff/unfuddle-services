@@ -5,20 +5,18 @@ module Services
       @subdomain  = config[:subdomain]
       @api_token  = config[:api_token]
       @room       = config[:room]
-      @url        = "https://#{@api_token}:X@{@subdomain}.campfirenow.com"
+      @url        = "https://#{@api_token}:X@#{@subdomain}.campfirenow.com"
     end
     
-    def render(data)
-      msg  = "<b>Commit</b><br/>"
-      msg << "     ID: #{data.commit}<br/>"
-      msg << " Author: #{data.author}<br/>on #{data.date}<br/><br/>"
-      msg << "Message: #{data.message.gsub(/\n/, '<br/>')}"
-      msg
+    def render(c)
+      "New repo commit #{c.commit[0,7]} by #{c.author} on #{c.date} -> #{c.message}"
     end
     
     def push(changeset)
       data = {:message => {:body => render(changeset), :type => "TextMessage"}}.to_json,
-      http_post("#{@url}/room/#{@room}/speak.json", data)
+      http_post("#{@url}/room/#{@room}/speak.json", data) do |resp|
+        return resp.code
+      end
     end
     
     def valid?
