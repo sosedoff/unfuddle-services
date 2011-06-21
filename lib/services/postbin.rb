@@ -6,7 +6,9 @@ module Services
     end
     
     def push(changeset)
-      http_post("http://www.postbin.org/#{@token}", changeset.xml)
+      http_post("http://www.postbin.org/#{@token}", changeset.xml) do |resp|
+        resp.code
+      end
     end
     
     def valid?

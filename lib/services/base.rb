@@ -7,7 +7,11 @@ module Services
   
   class Base
     def http_post(url, params)
-      RestClient.post(url, params)
+      if block_given?
+        RestClient.post(url, params) { |resp, req, result| yield(resp) }
+      else
+        RestClient.post(url, params)
+      end
     end
   end
   
