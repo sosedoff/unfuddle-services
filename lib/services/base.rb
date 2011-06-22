@@ -6,11 +6,11 @@ module Services
   class InvalidServiceError < Exception ; end
   
   class Base
-    def http_post(url, params)
+    def http_post(url, params, headers={})
       if block_given?
-        RestClient.post(url, params) { |resp, req, result| yield(resp) }
+        RestClient.post(url, params, headers) { |resp, req, result| yield(resp) }
       else
-        RestClient.post(url, params)
+        RestClient.post(url, params, headers)
       end
     end
   end
