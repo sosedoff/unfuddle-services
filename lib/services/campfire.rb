@@ -15,7 +15,7 @@ module Services
     def push(changeset)
       headers = {:content_type => :json, :accept => :json}
       data = {:message => {:body => render(changeset), :type => "TextMessage"}}.to_json
-      http_post("#{@url}/room/#{@room}/speak.json", data) do |resp|
+      http_post("#{@url}/room/#{@room}/speak.json", data, headers) do |resp|
         return resp.code
       end
     end
