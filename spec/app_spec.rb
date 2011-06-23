@@ -10,7 +10,7 @@ describe 'Application' do
   it 'should respond application version on /version' do
     get '/version'
     last_response.should be_ok
-    last_response.body.should == "unfuddle-services v#{UnfuddleServices::VERSION}"
+    last_response.body.should == UnfuddleServices::VERSION
   end
   
   it 'should process empty push request' do
@@ -23,7 +23,6 @@ describe 'Application' do
     post '/push', 'some stupid data'
     last_response.status.should == 400
     last_response.body.should match /invalid xml data/i
-    
     
     post '/push', fixture('sample.xml')
     last_response.status.should == 400
