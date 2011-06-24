@@ -7,7 +7,7 @@ Its pretty much similar to github's services.
 
 ## Install
 
-This app is still in early development so no downloads are available at this moment.
+    git clone git@github.com:sosedoff/unfuddle-services.git
 
 ## Usage
 
