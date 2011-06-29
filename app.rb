@@ -30,7 +30,7 @@ helpers do
 end
 
 get '/' do
-  'hello'
+  "unfuddle-services"
 end
 
 get '/version' do
