@@ -3,6 +3,7 @@ require 'sinatra'
 require 'yaml'
 require 'resque'
 require 'logger'
+require 'docify'
 
 $LOAD_PATH << '.' if RUBY_VERSION > '1.9'
 
@@ -40,7 +41,6 @@ end
 get '/help' do
   path = File.join(settings.root, 'docs')
   files = Dir.glob("#{path}/*").map { |f| File.basename(f) }
-  puts files.inspect
   files.map { |f| "<a href='/help/#{f}'>#{f}</a>" }.join("<br/>")
 end
 

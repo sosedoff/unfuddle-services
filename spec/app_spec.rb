@@ -7,7 +7,7 @@ describe 'Application' do
     last_response.body.should == 'unfuddle-services'
   end
   
-  it 'should respond application version on /version' do
+  it 'should respond application version at /version' do
     get '/version'
     last_response.should be_ok
     last_response.body.should == UnfuddleServices::VERSION
@@ -31,5 +31,23 @@ describe 'Application' do
     post '/push', fixture('invalid_changeset.xml')
     last_response.status.should == 400
     last_response.body.should match /invalid changeset/i
+  end
+  
+  it 'should provide documentation at /help' do
+    get '/help'
+    last_response.status.should == 200
+    
+    files = Dir.glob("#{app.settings.root}/docs/*").map { |f| File.basename(f) }
+    files.each do |f|
+      last_response.body.include?(f).should == true
+    end
+  end
+  
+  it 'should provide help information for a service at /help/:service' do
+    files = Dir.glob("#{app.settings.root}/docs/*").map { |f| File.basename(f) }
+    files.each do |f|
+      get "/help/#{f}"
+      last_response.status.should == 200
+    end
   end
 end
