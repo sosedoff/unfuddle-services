@@ -4,7 +4,7 @@ describe 'Application' do
   it 'should respond "hello" on /' do
     get '/'
     last_response.should be_ok
-    last_response.body.should == 'hello'
+    last_response.body.should == 'unfuddle-services'
   end
   
   it 'should respond application version on /version' do
