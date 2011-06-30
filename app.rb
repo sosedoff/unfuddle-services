@@ -37,6 +37,23 @@ get '/version' do
   UnfuddleServices::VERSION
 end
 
+get '/help' do
+  path = File.join(settings.root, 'docs')
+  files = Dir.glob("#{path}/*.*").map { |f| File.basename(f, File.extname(f)) }
+  files.map { |f| "<a href='/help/#{f}'>#{f}</a>" }.join("<br/>")
+end
+
+get '/help/:service' do
+  name = params[:service].to_s.strip
+  path = File.join(settings.root, 'docs')
+  file = Dir.glob("#{path}/*.*").select { |f| name == File.basename(f, File.extname(f)) }.first
+  unless file.nil?
+    Docify::Document.new(file).render('markdown')
+  else
+    redirect '/help'
+  end
+end
+
 post '/push' do
   begin
     xml = request.body.read
