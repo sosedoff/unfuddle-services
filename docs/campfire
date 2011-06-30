@@ -1,0 +1,21 @@
+Campfire
+========
+
+Campfire service hook allows you to post commit updates into the chat room.
+
+Install Notes
+-------------
+
+  1. subdomain is your campfire subdomain
+	(ie 'your-subdomain' if you visit 'https://your-subdomain.campfirenow.com')
+  2. room is the actual room ID, not the name
+  3. token is your API token. get it from campfire's "Edit my Campfire
+     account" screen
+  
+Configuration
+-------------
+
+    campfire:
+      subdomain: foo (if your url is foo.campfirenow.com)
+      api_token: YOUR_API_TOKEN
+      room: ROOM_ID

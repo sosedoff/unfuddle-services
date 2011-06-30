@@ -1,0 +1,12 @@
+Postbin
+=======
+
+Postbin service hook allows you to dump commit updates into a debug bucket.
+
+Go to postbin.org and create a new bucket. Then add it into your configuration file.
+
+Configuration
+-------------
+
+    postbin:
+      token: "foo" (if your url is http://www.postbin.org/foo)
