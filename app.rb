@@ -47,7 +47,7 @@ end
 get '/help' do
   path = File.join(settings.root, 'docs')
   files = Dir.glob("#{path}/*").map { |f| File.basename(f) }
-  files.map { |f| "<a href='#{relative_url('/help' + f)}'>#{f}</a>" }.join("<br/>")
+  files.map { |f| "<a href='#{relative_url('/help/' + f)}'>#{f}</a>" }.join("<br/>")
 end
 
 get '/help/:service' do
