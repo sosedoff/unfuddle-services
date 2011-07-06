@@ -25,6 +25,12 @@ configure :production do
 end
 
 helpers do
+  # Returns a relative url if deployed as suburl
+  def relative_url(path='')
+    "#{request.env['RAILS_RELATIVE_URL_ROOT']}#{path}"
+  end
+  
+  # Returns a primary logger
   def logger
     UnfuddleServices.logger
   end
@@ -41,7 +47,7 @@ end
 get '/help' do
   path = File.join(settings.root, 'docs')
   files = Dir.glob("#{path}/*").map { |f| File.basename(f) }
-  files.map { |f| "<a href='/help/#{f}'>#{f}</a>" }.join("<br/>")
+  files.map { |f| "<a href='#{relative_url('/help' + f)}'>#{f}</a>" }.join("<br/>")
 end
 
 get '/help/:service' do
@@ -51,7 +57,7 @@ get '/help/:service' do
   unless file.nil?
     Docify::Document.new(file).render('markdown')
   else
-    redirect '/help'
+    redirect relative_url('/help')
   end
 end
 
