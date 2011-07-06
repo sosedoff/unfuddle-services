@@ -23,7 +23,7 @@ Dont forget to add file REPO_ID.yml to config/hooks folder. That's how the syste
 
 - Basecamp - http://basecamphq.com/
 - Postbin - http://www.postbin.org/
-- Campfire (incoming) - http://campfirenow.com/
+- Campfire - http://campfirenow.com/
 
 ### Basecamp
 
