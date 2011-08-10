@@ -1,7 +1,7 @@
 require 'active_support/core_ext'
 
 module Unfuddle
-  class ChangesetError < Exception ; end
+  class ChangesetError < StandardError ; end
   
   class Changeset
     FIELDS = %w(repository_id revision message committer_name committer_date).freeze
