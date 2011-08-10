@@ -8,6 +8,7 @@ gem 'activesupport',        '~> 3.0.0'
 gem 'i18n',                 '0.5.0'
 gem 'resque',               '1.17.1'
 gem 'docify',               '~> 1.0'
+gem 'foreman',              '0.19.0'
 
 group :development do
   gem 'thin',               '1.2.11'
