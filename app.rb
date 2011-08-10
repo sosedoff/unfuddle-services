@@ -13,6 +13,7 @@ require 'lib/push_job'
 
 UnfuddleServices.root = File.expand_path(File.dirname(__FILE__))
 UnfuddleServices.setup_logger
+UnfuddleServices.setup_unfuddle
 
 configure :production do
   set :static,              false

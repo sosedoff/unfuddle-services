@@ -3,6 +3,14 @@ module UnfuddleServices
     
   class InvalidConfigError  < StandardError ; end
   class ConfigNotFoundError < StandardError ; end
+  
+  def self.load_unfuddle_config
+    path = File.join(root, "config", "unfuddle.yml")
+    unless File.exists?(path)
+      raise UnfuddleServices::ConfigNotFoundError, "Unfuddle config file #{path} was not found"
+    end
+    YAML.load_file(path)
+  end
     
   # Returns a configuration file assigned with repo
   def self.load_config(repo_id)
@@ -34,6 +42,10 @@ module UnfuddleServices
   # Returns a current application logger
   def self.logger
     @@logger
+  end
+  
+  def self.setup_unfuddle
+    Unfuddle.setup(load_unfuddle_config)
   end
 end
 

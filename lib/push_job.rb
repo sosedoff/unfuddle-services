@@ -1,9 +1,10 @@
 class PushJob
-  @queue = :push_jobs
+  @queue = :unfuddle_commits
   
   def self.perform(changeset_xml)
     changeset = Unfuddle::Changeset.new(changeset_xml)
     begin
+      commit = Unfuddle.client.commit(changeset.repo, changeset.commit)
       config = UnfuddleServices.load_config(changeset.repo)
       unless config.empty?
         config.each_pair do |service_name, options|
