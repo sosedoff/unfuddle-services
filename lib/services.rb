@@ -1,8 +1,8 @@
 module UnfuddleServices
   VERSION = '0.2.0'.freeze
     
-  class InvalidConfigError  < Exception ; end
-  class ConfigNotFoundError < Exception ; end
+  class InvalidConfigError  < StandardError ; end
+  class ConfigNotFoundError < StandardError ; end
     
   # Returns a configuration file assigned with repo
   def self.load_config(repo_id)

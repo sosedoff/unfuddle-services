@@ -10,10 +10,9 @@ module Services
     end
     
     def render(data)
-      msg  = "<b>Commit</b><br/>"
-      msg << "     ID: #{data.commit}<br/>"
-      msg << " Author: #{data.author}<br/>on #{data.date}<br/><br/>"
-      msg << "Message: #{data.message.gsub(/\n/, '<br/>')}"
+      msg  = "<br/><b>##{data.commit}</b><br/>"
+      msg << "by #{data.author} on #{data.date.strftime("%a, %B %d @ %I:%M %p")}<br/>"
+      msg << "<i>#{data.message.gsub(/\n/, '<br/>')}</i>"
       msg
     end
     
